@@ -6,8 +6,9 @@
   <meta name="referrer" content="no-referrer">
   <title>智能助手 · 楼宇智派</title>
   <link rel="stylesheet" href="./style.css?v=20261028-agent-1">
-  <link rel="stylesheet" href="./assistant.css?v=20261028-agent-1">
-  <script src="./assistant.js?v=20261028-agent-1" defer></script>
+  <link rel="stylesheet" href="./assistant.css?v=20261030-chat-1">
+  <script src="./config.js?v=20261030-chat-1"></script>
+  <script src="./assistant.js?v=20261030-chat-1" type="module"></script>
 </head>
 <body class="assistant-page">
   <header class="assistant-header">
@@ -18,8 +19,6 @@
     <nav class="assistant-actions" aria-label="智能助手操作">
       <a class="assistant-button" href="./index.html">返回工作台</a>
       <button id="agent-refresh" class="assistant-button" type="button">重新加载</button>
-      <!-- 更新智能体地址时，只需替换下面的 href。 -->
-      <a id="agent-open" class="assistant-button primary" href="https://code.coze.cn/web-sdk/7701582112343998483" target="_blank" rel="noopener noreferrer">新窗口打开 ↗</a>
     </nav>
   </header>
   <main class="assistant-main">
@@ -27,18 +26,25 @@
       <div class="eyebrow">AI ASSISTANT</div>
       <h1 id="assistant-title">校园网运维智能助手</h1>
       <p>关于网络连接、现场巡查和工单记录，在这里开始对话。</p>
-      <p>如果提示登录扣子，请点“新窗口打开”，登录后再返回重试。</p>
+      <p>使用楼宇智派账号进入对话。</p>
     </section>
     <section class="assistant-panel" aria-label="智能体对话">
       <div id="agent-frame-area" class="assistant-frame-area" aria-busy="true">
+        <div id="agent-chat" class="assistant-chat"></div>
         <div id="agent-loading" class="assistant-loading" aria-hidden="true">
           <span class="assistant-spinner"></span>
           <span>正在打开智能助手…</span>
         </div>
+        <div id="agent-error" class="assistant-error" hidden>
+          <span class="assistant-error-icon" aria-hidden="true">✦</span>
+          <h2>智能助手暂未连接</h2>
+          <p id="agent-error-text"></p>
+          <a id="agent-login" class="assistant-button primary" href="./index.html" hidden>登录楼宇智派</a>
+        </div>
       </div>
       <p id="agent-status" class="assistant-status" role="status" aria-live="polite">正在打开对话页面…</p>
     </section>
-    <noscript><p>请使用上方“新窗口打开”进入智能助手。</p></noscript>
+    <noscript><p>请启用 JavaScript 后使用智能助手。</p></noscript>
   </main>
 </body>
 </html>

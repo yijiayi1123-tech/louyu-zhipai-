@@ -15,7 +15,11 @@ main.assistant-main{flex:1;min-height:0;width:100%;max-width:1600px;display:flex
 .assistant-intro p{margin:4px 0 0;font-size:14px}
 .assistant-panel{flex:1;min-height:360px;display:flex;flex-direction:column;overflow:hidden;background:#fff;border:1px solid #dfe6f0;border-radius:12px;box-shadow:0 4px 20px #20314705}
 .assistant-frame-area{flex:1;min-height:280px;position:relative;background:#faf8f4;overflow:hidden}
-.assistant-frame{display:block;width:100%;height:100%;position:absolute;inset:0;border:0;background:#faf8f4}
+.assistant-chat{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
+.assistant-error{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:24px;text-align:center;background:#f7f9fc}
+.assistant-error[hidden],.assistant-error [hidden]{display:none}
+.assistant-error h2,.assistant-error p{margin:0}
+.assistant-error-icon{font-size:28px;color:#285ee8}
 .assistant-loading{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;background:#f7f9fc;color:#718197;pointer-events:none}
 .assistant-loading[hidden]{display:none}
 .assistant-spinner{height:26px;width:26px;border:3px solid #dfe7fa;border-top-color:#285ee8;border-radius:50%;animation:assistant-spin .8s linear infinite}
