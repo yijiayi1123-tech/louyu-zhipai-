@@ -1,4 +1,4 @@
-import { createChatAuth, chatOptions } from './assistant-auth.js?v=20261030-chat-1';
+import { createChatAuth, chatOptions } from './assistant-auth.js?v=20261030-gateway-1';
 
 const SDK_URL = 'https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js';
 const area = document.querySelector('#agent-frame-area');

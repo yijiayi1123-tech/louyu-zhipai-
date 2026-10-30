@@ -5,7 +5,7 @@ export class ChatAuthError extends Error {
 }
 
 export function createChatAuth(config, { storage = sessionStorage, fetchImpl = fetch, now = () => Date.now() } = {}) {
-  const base = config.supabaseUrl?.replace(/\/$/, '');
+  const base = (config.apiBaseUrl || config.supabaseUrl)?.replace(/\/$/, '');
   const key = 'louyu-session:' + config.supabaseUrl;
   let pending = null, cached = null;
   const read = () => {
