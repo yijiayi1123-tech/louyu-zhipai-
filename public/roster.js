@@ -44,7 +44,7 @@
       }
 
       function html() {
-        if (!allowed()) return '<div class="card empty">仅管理员可查看人员名单</div>';
+        if (!allowed()) return '<div class="card empty">请使用已启用的账号登录后查看人员名单</div>';
         if (state.status === 'idle' || state.status === 'loading') return '<div class="card empty" role="status">正在读取人员名单…</div>';
         if (state.status === 'error') return '<div class="card"><p role="alert">暂时无法读取人员名单。</p><button type="button" id="roster-retry">重新加载</button></div>';
         if (!state.rows.length) return '<div class="card"><p>名单暂无人员。</p><button type="button" id="roster-retry">重新加载</button></div>';
