@@ -5,3 +5,12 @@
 @media(max-width:600px){input,select,textarea{font-size:16px}}
 
 nav .nav-link{display:block;text-align:left;color:#b5c4d9;padding:12px 16px;border-radius:8px;text-decoration:none;white-space:nowrap}nav .nav-link:hover{background:#203650}nav .nav-link:focus-visible{outline:2px solid #a9bfff;outline-offset:2px}.assistant-entry{margin:16px 0}@media(max-width:600px){nav .nav-link{padding:8px 12px}}
+
+.roster-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.roster-areas{margin-bottom:16px}
+.roster-areas button[aria-pressed="true"]{color:#2457cc;background:#eaf0ff;border-color:#a9bfff;font-weight:600}
+.roster-toolbar{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+.roster-group-heading{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.roster-group-heading h2{margin:0}.roster-group td{font-variant-numeric:tabular-nums}
+@media(min-width:601px){aside nav{min-height:0;overflow-y:auto}aside footer{flex-shrink:0}}
+@media(max-width:600px){.roster-stats{gap:8px}.roster-stats .stat{padding:12px 10px}.roster-stats .stat span{display:none}.roster-toolbar{grid-template-columns:1fr}.roster-group{padding:12px}}
