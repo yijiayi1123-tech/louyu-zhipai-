@@ -14,7 +14,7 @@ export function createChatAuth(config, { storage = sessionStorage, fetchImpl = f
       return value?.access_token && value?.user?.id ? value : null;
     } catch { return null; }
   };
-  const loginRequired = () => new ChatAuthError('请先登录楼宇智派，再从菜单进入智能助手。', 'LOGIN_REQUIRED', 401);
+  const loginRequired = () => new ChatAuthError('请先登录校园楼宇运维助手，再从菜单进入智能助手。', 'LOGIN_REQUIRED', 401);
   const checkSame = current => {
     if (read()?.access_token !== current.access_token) throw loginRequired();
   };
@@ -26,7 +26,7 @@ export function createChatAuth(config, { storage = sessionStorage, fetchImpl = f
     } catch { throw new ChatAuthError('助手连接未完成，请检查网络后重试。', 'NETWORK_ERROR'); }
     const value = await response.json().catch(() => null);
     if (!response.ok) {
-      const message = response.status === 401 ? '登录已过期，请重新登录楼宇智派。' : response.status === 403 ? '账号暂时无法使用助手，请联系管理员。' :
+      const message = response.status === 401 ? '登录已过期，请重新登录校园楼宇运维助手。' : response.status === 403 ? '账号暂时无法使用助手，请联系管理员。' :
         response.status === 404 ? '助手服务尚未就绪，请联系管理员。' : value?.message || '助手暂时不可用，请稍后重试。';
       throw new ChatAuthError(message, value?.code || 'REQUEST_FAILED', response.status);
     }
@@ -85,7 +85,7 @@ export function chatOptions(grant, container, refreshToken, onShow) {
     config: { bot_id: CHAT_BOT_ID, isIframe: false },
     componentProps: { title: '校园网运维智能助手' },
     auth: { type: 'token', token: grant.access_token, onRefreshToken: refreshToken },
-    userInfo: { id: grant.user_id, nickname: '楼宇智派用户' },
+    userInfo: { id: grant.user_id, nickname: '校园楼宇运维助手用户' },
     ui: {
       base: { layout: 'pc', lang: 'zh-CN' },
       asstBtn: { isNeed: false }, header: { isShow: true, isNeedClose: false },
