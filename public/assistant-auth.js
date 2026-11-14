@@ -7,7 +7,7 @@ export class ChatAuthError extends Error {
 export function createChatAuth(config, { storage = sessionStorage, fetchImpl = fetch, now = () => Date.now() } = {}) {
   const base = (config.apiBaseUrl || config.supabaseUrl)?.replace(/\/$/, '');
   const key = 'louyu-session:' + config.supabaseUrl;
-  let pending = null, cached = null;
+  let pending = null, cached = null, refreshing = null;
   const read = () => {
     try {
       const value = JSON.parse(storage.getItem(key) || 'null');
@@ -35,8 +35,15 @@ export function createChatAuth(config, { storage = sessionStorage, fetchImpl = f
   async function ensureSession(force = false) {
     const current = read();
     if (!current) throw loginRequired();
+    if (refreshing?.token === current.access_token) return refreshing.promise;
     if (!force && current.expires_at * 1000 > now() + 60000) return current;
     if (!current.refresh_token) throw loginRequired();
+    const promise = refreshSession(current);
+    refreshing = { token: current.access_token, promise };
+    try { return await promise; }
+    finally { if (refreshing?.promise === promise) refreshing = null; }
+  }
+  async function refreshSession(current) {
     let next;
     try { next = await request('/auth/v1/token?grant_type=refresh_token', { method: 'POST', body: JSON.stringify({ refresh_token: current.refresh_token }) }); }
     catch (error) {
@@ -52,28 +59,57 @@ export function createChatAuth(config, { storage = sessionStorage, fetchImpl = f
     storage.setItem(key, JSON.stringify(next));
     return next;
   }
-  async function issue(force) {
+  function requireConfig() {
     if (!base || !config.supabaseKey) throw new ChatAuthError('助手尚未完成配置，请联系管理员。', 'CONFIG_MISSING');
-    let session = await ensureSession();
-    if (!force && cached?.owner === session.user.id && cached.expires_at * 1000 > now() + 90000) return cached;
+  }
+  async function authorizedRequest(path, initialSession, options) {
+    let session = initialSession;
     let value;
-    const mint = current => request('/functions/v1/coze-chat-token', { method: 'POST', headers: { Authorization: 'Bearer ' + current.access_token }, body: '{}' });
-    try { value = await mint(session); }
+    const send = current => request(path, { ...options, headers: { Authorization: 'Bearer ' + current.access_token } });
+    try { value = await send(session); }
     catch (error) {
       if (error.status !== 401) throw error;
-      checkSame(session);
-      session = await ensureSession(true);
-      value = await mint(session);
+      const latest = read();
+      if (latest?.user.id !== session.user.id) throw loginRequired();
+      session = latest.access_token === session.access_token ? await ensureSession(true) : latest;
+      value = await send(session);
     }
     checkSame(session);
+    return { value, owner: session.user.id };
+  }
+  async function verifyActive() {
+    requireConfig();
+    const session = await ensureSession();
+    const parameters = new URLSearchParams({ select: 'id,active,role', id: 'eq.' + session.user.id });
+    const { value, owner } = await authorizedRequest('/rest/v1/profiles?' + parameters, session, { method: 'GET' });
+    const profile = Array.isArray(value) && value.find(profile => profile.id === owner && profile.active === true);
+    if (!profile) {
+      throw new ChatAuthError('账号尚未启用，请联系管理员。', 'PROFILE_INACTIVE', 403);
+    }
+    return profile;
+  }
+  async function sendHeartbeat(operatorId) {
+    requireConfig();
+    const session = await ensureSession();
+    if (session.user.id !== operatorId) throw loginRequired();
+    await authorizedRequest('/rest/v1/rpc/update_operator_presence', session, {
+      method: 'POST',
+      body: JSON.stringify({ target_building: null, availability: null }),
+    });
+  }
+  async function issue(force) {
+    requireConfig();
+    const session = await ensureSession();
+    if (!force && cached?.owner === session.user.id && cached.expires_at * 1000 > now() + 90000) return cached;
+    const { value, owner } = await authorizedRequest('/functions/v1/coze-chat-token', session, { method: 'POST', body: '{}' });
     if (typeof value?.access_token !== 'string' || !value.access_token || value.access_token.startsWith('pat_') ||
       value.bot_id !== CHAT_BOT_ID || !value.user_id || !Number.isFinite(value.expires_at) || value.expires_at * 1000 <= now()) {
       throw new ChatAuthError('助手授权结果无效，请联系管理员。', 'INVALID_GRANT');
     }
-    cached = { ...value, owner: session.user.id };
+    cached = { ...value, owner };
     return cached;
   }
-  return { getToken(force = false) {
+  return { verifyActive, sendHeartbeat, getToken(force = false) {
     if (pending) return pending;
     pending = issue(force).finally(() => { pending = null; });
     return pending;

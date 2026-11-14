@@ -1,4 +1,4 @@
-.assistant-page{height:100vh;height:100dvh;display:flex;flex-direction:column}
+.assistant-page{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
 .assistant-header{flex:none;padding:16px 28px;min-height:74px;gap:20px}
 .assistant-brand{display:flex;align-items:center;gap:12px;color:#203147;text-decoration:none;font-size:20px;font-weight:700;white-space:nowrap}
 .assistant-brand small{font-size:13px;font-weight:400;color:#718197;margin-left:10px;padding-left:12px;border-left:1px solid #dce4ed}
@@ -24,6 +24,24 @@ main.assistant-main{flex:1;min-height:0;width:100%;max-width:1600px;display:flex
 .assistant-loading[hidden]{display:none}
 .assistant-spinner{height:26px;width:26px;border:3px solid #dfe7fa;border-top-color:#285ee8;border-radius:50%;animation:assistant-spin .8s linear infinite}
 .assistant-status{flex:none;min-height:41px;margin:0;padding:10px 16px;border-top:1px solid #e7edf4;background:#fff;color:#718197;font-size:12px}
+.assistant-panel{flex:none;height:clamp(360px, calc(100dvh - 220px), 880px)}
+.assistant-learning{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+  align-items:start;
+  gap:18px;
+  margin-top:24px;
+  scroll-margin-top:16px;
+}
+.assistant-learning[hidden]{display:none}
+.assistant-learning .card{margin:0}
+.assistant-learning details{padding:10px 0;border-bottom:1px solid #e7edf4}
+.assistant-learning details:last-child{border-bottom:0}
+.assistant-learning summary{cursor:pointer}
+.assistant-learning details p{margin:8px 0 0}
+.training-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:16px}
+.training-actions p{margin:0;font-weight:600;color:#203147}
+@media(max-width:750px){.assistant-learning{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:16px}}
 @keyframes assistant-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.assistant-spinner{animation:none}}
 @media(max-width:650px){.assistant-header{padding:12px 14px;flex-wrap:wrap;gap:10px}.assistant-brand{font-size:18px}.assistant-brand small{font-size:12px}.assistant-actions{width:100%;gap:8px;justify-content:flex-start}.assistant-actions .assistant-button,.assistant-actions button{font-size:13px;padding:7px 12px}main.assistant-main{padding:16px 12px 12px}.assistant-intro{margin-bottom:12px}.assistant-intro h1{font-size:21px}.assistant-intro p{font-size:12px}.assistant-panel{min-height:340px;border-radius:9px}.assistant-status{padding:9px 12px;line-height:1.6}}

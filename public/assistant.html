@@ -6,9 +6,9 @@
   <meta name="referrer" content="no-referrer">
   <title>智能助手 · 校园楼宇运维助手</title>
   <link rel="stylesheet" href="./style.css?v=20261028-agent-1">
-  <link rel="stylesheet" href="./assistant.css?v=20261030-chat-1">
+  <link rel="stylesheet" href="./assistant.css?v=20261114-workflow-1">
   <script src="./config.js?v=20261030-gateway-1"></script>
-  <script src="./assistant.js?v=20261114-operations-1" type="module"></script>
+  <script src="./assistant.js?v=20261114-workflow-1" type="module"></script>
 </head>
 <body class="assistant-page">
   <header class="assistant-header">
@@ -26,7 +26,7 @@
       <div class="eyebrow">AI ASSISTANT</div>
       <h1 id="assistant-title">AI 工作助手</h1>
       <p>关于网络连接、现场巡查和工单记录，在这里开始对话。</p>
-      <p>使用校园楼宇运维助手账号进入对话。</p>
+      <p><a id="learning-link" href="#assistant-learning" hidden>查看知识库与培训 ↓</a></p>
     </section>
     <section class="assistant-panel" aria-label="智能体对话">
       <div id="agent-frame-area" class="assistant-frame-area" aria-busy="true">
@@ -44,6 +44,53 @@
       </div>
       <p id="agent-status" class="assistant-status" role="status" aria-live="polite">正在打开对话页面…</p>
     </section>
+    <div id="assistant-learning" class="assistant-learning" hidden>
+      <section class="card" aria-labelledby="knowledge-title">
+        <h2 id="knowledge-title">网络运维知识库</h2>
+        <details open>
+          <summary>无线网络连接</summary>
+          <p>先核对网络名称与认证状态，并用另一台设备在同一区域复测。记录时间、楼宇、连接方式和错误现象。</p>
+        </details>
+        <details>
+          <summary>测速与复核</summary>
+          <p>在同一位置、同一设备和同一连接方式下复测，并记录下载、上传及延迟。</p>
+        </details>
+        <details>
+          <summary>工单协同</summary>
+          <p>提交工单时说明故障位置、发生时间、影响范围、复现步骤和已经做过的检查。</p>
+        </details>
+      </section>
+      <section class="card" aria-labelledby="training-title">
+        <h2 id="training-title">新人培训考核 · 自测</h2>
+        <form id="training-form">
+          <label for="answer-wireless">同一楼宇多台设备无法接入时，首先记录什么？</label>
+          <select id="answer-wireless" name="wireless" required>
+            <option value="">请选择</option>
+            <option value="0">网络名称、时间和故障现象</option>
+            <option value="1">用户登录密码</option>
+            <option value="2">测速网站首页</option>
+          </select>
+          <label for="answer-speed">哪组结果适合直接比较？</label>
+          <select id="answer-speed" name="speed" required>
+            <option value="">请选择</option>
+            <option value="0">不同地点的两次测试</option>
+            <option value="1">相同设备、位置与连接方式的复测</option>
+            <option value="2">一组有线与一组无线结果</option>
+          </select>
+          <label for="answer-ticket">工单应该包含哪项信息？</label>
+          <select id="answer-ticket" name="ticket" required>
+            <option value="">请选择</option>
+            <option value="0">账号验证码</option>
+            <option value="1">同学的登录凭据</option>
+            <option value="2">影响范围和复现步骤</option>
+          </select>
+          <div class="training-actions">
+            <button class="primary" type="submit">提交自测</button>
+            <p id="training-result" role="status"></p>
+          </div>
+        </form>
+      </section>
+    </div>
     <noscript><p>请启用 JavaScript 后使用智能助手。</p></noscript>
   </main>
 </body>
