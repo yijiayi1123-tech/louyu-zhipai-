@@ -1,30 +1,651 @@
-*{box-sizing:border-box}body{margin:0;background:#f3f6fa;color:#203147;font:14px/1.6 "Segoe UI","Microsoft YaHei",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid #dce4ed;background:white;border-radius:8px;padding:9px 16px;color:inherit}button:hover{filter:brightness(.96)}button:disabled{opacity:.55;cursor:wait}.primary{background:#285ee8;color:white;border-color:#285ee8}aside{position:fixed;inset:0 auto 0 0;width:222px;background:#13243c;color:#b5c4d9;padding:30px 18px;display:flex;flex-direction:column}aside h2{color:white;margin:0;font-size:24px;letter-spacing:2px}aside small{color:#8398b4}nav{margin-top:40px;display:grid;gap:8px}nav button{text-align:left;background:none;border:0;color:#b5c4d9;padding:12px 16px}nav button.active{background:#2a5ce0;color:white}aside footer{margin-top:auto;padding:16px 10px;border-top:1px solid #2a3a51}.workspace{margin-left:222px}header{background:white;border-bottom:1px solid #e5eaf1;padding:18px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}header .actions{display:flex;gap:8px;align-items:center}main{max-width:1450px;margin:auto;padding:30px 36px}.eyebrow{color:#657d9b;font-size:12px;letter-spacing:2px}h1{font-size:28px;margin:4px 0 8px}h2{font-size:17px;margin:0 0 18px}p{color:#718197}.topline{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px}.banner{background:#e8efff;color:#31549a;border:1px solid #d7e3ff;padding:10px 16px;border-radius:8px;margin-bottom:24px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:24px}.stat,.card{background:white;border:1px solid #e4eaf2;border-radius:12px;padding:22px}.stat small{color:#718197}.stat strong{display:block;font-size:32px;margin:7px 0}.stat span{color:#39886a;font-size:12px}.grid{display:grid;grid-template-columns:1.8fr 1fr;gap:22px}.card{margin-bottom:22px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px solid #edf1f6}.row:last-child{border:0}.row strong{display:block}.muted{color:#7f8da1;font-size:12px}.badge{font-size:12px;padding:3px 9px;background:#edf2ff;color:#4166c1;border-radius:5px;white-space:nowrap}.badge.done{background:#e6f6ee;color:#278160}.badge.warn{background:#fff2e3;color:#b57524}.toolbar{display:flex;gap:12px;margin-bottom:20px}input,select,textarea{width:100%;padding:10px 12px;border:1px solid #dce3ed;border-radius:7px;background:white;color:#203147}input:focus,select:focus,textarea:focus{outline:2px solid #a9bfff}label{display:block;margin:14px 0 5px;font-size:13px}textarea{min-height:95px;resize:vertical}table{width:100%;border-collapse:collapse;text-align:left}th{background:#f7f9fc;color:#77869b;font-size:12px;font-weight:500}th,td{padding:14px 12px;border-bottom:1px solid #edf1f6}.table-wrap{overflow:auto}.progress{height:7px;background:#eef2f7;border-radius:9px;margin:9px 0 18px;overflow:hidden}.progress i{display:block;height:100%;background:#4275ed}.empty{text-align:center;padding:40px;color:#8896a9}dialog{border:0;border-radius:14px;width:min(540px,94vw);padding:28px;box-shadow:0 20px 80px #13243c33}dialog::backdrop{background:#14233b66}.dialog-head{display:flex;justify-content:space-between;align-items:center}.form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}#toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#203147;color:white;padding:12px 22px;border-radius:9px;display:none;z-index:10}.notice{white-space:pre-wrap}.report{white-space:pre-wrap;line-height:2}.chips{display:flex;gap:8px;flex-wrap:wrap}.mobile-brand{display:none}a{color:#285ee8}.avatar{display:inline-grid;place-items:center;background:#e9effe;color:#315fce;border-radius:50%;width:34px;height:34px;margin-right:8px} @media(max-width:900px){aside{width:175px;padding:24px 12px}.workspace{margin-left:175px}main{padding:22px}.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}header{padding:15px 22px}.topline{align-items:flex-start}header .muted{display:none}}@media(max-width:600px){aside{position:static;width:100%;padding:16px}aside h2{font-size:20px}aside small,aside footer{display:none}nav{display:flex;overflow:auto;margin-top:12px;gap:4px}nav button{white-space:nowrap;padding:8px 12px}.workspace{margin:0}header{padding:12px 16px;font-size:12px}header .actions{flex-wrap:wrap;justify-content:flex-end}header button{padding:5px 9px}main{padding:20px 14px}h1{font-size:23px}.stat,.card{padding:16px}.stats{gap:10px}.stat strong{font-size:27px}.topline{flex-wrap:wrap}td,th{padding:12px 9px}.toolbar{flex-wrap:wrap}}
+/* ============================================================
+   校园楼宇运维助手 · 视觉替换样式表
+   替换目标：public/style.css
+   依赖：DOM 结构与 class 名保持与 app.js 一致，本文件只改变视觉层
+   ============================================================ */
 
-.form-error{color:#a82929;white-space:pre-wrap}.form-error:empty{display:none}
+/* ---------- 1. 基础重置与排版 ---------- */
+*,*::before,*::after{box-sizing:border-box}
 
-@media(max-width:600px){input,select,textarea{font-size:16px}}
+body{
+  margin:0;
+  background:#F3F6FA;
+  color:#203147;
+  font:14px/1.6 "Noto Sans SC","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
 
-nav .nav-link{display:block;text-align:left;color:#b5c4d9;padding:12px 16px;border-radius:8px;text-decoration:none;white-space:nowrap}nav .nav-link:hover{background:#203650}nav .nav-link:focus-visible{outline:2px solid #a9bfff;outline-offset:2px}.assistant-entry{margin:16px 0}@media(max-width:600px){nav .nav-link{padding:8px 12px}}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
 
+h1,h2,h3{margin:0;color:#203147}
+p{margin:0;color:#718197}
+a{color:#285EE8;text-decoration:none}
+a:hover{filter:brightness(.95)}
+
+::selection{background:#285EE8;color:#fff}
+
+/* 滚动条 */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#EEF2F7}
+::-webkit-scrollbar-thumb{background:#C8D2E0;border-radius:5px;border:2px solid #EEF2F7}
+::-webkit-scrollbar-thumb:hover{background:#A9B7C9}
+
+/* ---------- 2. 按钮 ---------- */
+button{
+  border:1px solid #DCE3ED;
+  background:#FFFFFF;
+  color:#203147;
+  border-radius:8px;
+  padding:9px 16px;
+  font-size:13.5px;
+  font-weight:400;
+  transition:background .15s ease,border-color .15s ease,color .15s ease;
+}
+button:hover{background:#F7F9FC;border-color:#C6D2E2}
+button:active{background:#EFF3F9}
+button:disabled{opacity:.55;cursor:not-allowed}
+button:focus-visible{outline:2px solid #A9BFFF;outline-offset:2px}
+
+button.primary{
+  background:#285EE8;
+  color:#FFFFFF;
+  border-color:#285EE8;
+  font-weight:500;
+}
+button.primary:hover{background:#1E4FD4;border-color:#1E4FD4}
+button.primary:active{background:#1A46BE}
+
+/* ---------- 3. 左侧导航栏 ---------- */
+aside{
+  position:fixed;
+  inset:0 auto 0 0;
+  width:240px;
+  background:#13243C;
+  color:#B5C4D9;
+  padding:26px 24px;
+  display:flex;
+  flex-direction:column;
+  overflow-y:auto;
+  z-index:20;
+}
+
+aside h2{
+  color:#FFFFFF;
+  margin:0;
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:.5px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+aside h2::before{
+  content:"";
+  width:22px;height:22px;
+  flex:none;
+  background:#5D8CFF;
+  border-radius:6px;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M4 20V7.5L12 3l8 4.5V20'/%3E%3Cpath d='M9.5 20v-6h5v6'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M4 20V7.5L12 3l8 4.5V20'/%3E%3Cpath d='M9.5 20v-6h5v6'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+aside small{
+  color:#65799A;
+  font-size:9.5px;
+  letter-spacing:2px;
+  margin-top:6px;
+  padding-left:32px;
+}
+
+nav{
+  margin-top:22px;
+  display:grid;
+  gap:2px;
+  align-content:start;
+}
+
+nav button{
+  text-align:left;
+  background:none;
+  border:0;
+  color:#B5C4D9;
+  padding:9px 10px;
+  border-radius:8px;
+  font-size:13.5px;
+  font-weight:400;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  transition:background .15s ease,color .15s ease;
+}
+nav button:hover{background:#1B3054;color:#E6EEF9}
+nav button:focus-visible{outline:2px solid #A9BFFF;outline-offset:-2px}
+
+nav button.active{
+  background:#2A5CE0;
+  color:#FFFFFF;
+  font-weight:500;
+}
+
+/* 原站用字符图标，这里以缩放方式统一降透明度 */
+nav button>span{
+  font-size:15px;
+  line-height:1;
+  width:17px;
+  text-align:center;
+  flex:none;
+  opacity:.85;
+}
+nav button.active>span{opacity:1}
+
+nav .nav-link{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:8px;
+  padding:10px;
+  border-radius:8px;
+  background:#1B3054;
+  border:1px solid #2E4A77;
+  color:#CFE0FF;
+  font-size:13px;
+  font-weight:500;
+  white-space:nowrap;
+  transition:background .15s ease,border-color .15s ease;
+}
+nav .nav-link:hover{background:#223A63;border-color:#3C5C8F}
+nav .nav-link>span{font-size:14px;line-height:1;flex:none}
+
+aside footer{
+  margin-top:auto;
+  padding:16px 10px 0;
+  border-top:1px solid #2A3A51;
+  color:#8398B4;
+  font-size:11.5px;
+  line-height:1.7;
+}
+aside footer small{display:block;color:#5A6E8C;font-size:10.5px;letter-spacing:0;padding:0;margin-top:2px}
+
+/* ---------- 4. 工作区骨架 ---------- */
+.workspace{
+  margin-left:240px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+header{
+  background:#FFFFFF;
+  border-bottom:1px solid #E5EAF1;
+  padding:18px 36px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  position:sticky;
+  top:0;
+  z-index:15;
+}
+header .muted{color:#7F8DA1}
+
+header .actions{display:flex;gap:8px;align-items:center}
+header .actions>span{display:flex;align-items:center;font-size:13px;color:#203147}
+
+.avatar{
+  display:inline-grid;
+  place-items:center;
+  background:#E9EFFE;
+  color:#315FCE;
+  border-radius:50%;
+  width:34px;
+  height:34px;
+  margin-right:8px;
+  font-size:14px;
+  font-weight:500;
+  flex:none;
+}
+
+main{
+  flex:1;
+  width:100%;
+  max-width:1500px;
+  margin:0 auto;
+  padding:28px 36px 40px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* ---------- 5. 页面标题区 ---------- */
+.topline{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+}
+.topline>div{display:flex;flex-direction:column;gap:5px}
+
+.eyebrow{
+  color:#657D9B;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:500;
+}
+
+h1{font-size:26px;line-height:1.38;font-weight:700;letter-spacing:-.2px}
+
+.muted{color:#7F8DA1;font-size:12px}
+
+/* ---------- 6. 状态横幅 ---------- */
+.banner{
+  background:#E8EFFF;
+  color:#31549A;
+  border:1px solid #D7E3FF;
+  padding:10px 16px;
+  border-radius:8px;
+  font-size:12.5px;
+}
+
+/* ---------- 7. 统计卡片 ---------- */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.stat{
+  background:#FFFFFF;
+  border:1px solid #E4EAF2;
+  border-radius:12px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  transition:box-shadow .18s ease,transform .18s ease;
+}
+.stat:hover{box-shadow:0 6px 20px rgba(19,36,60,.06);transform:translateY(-1px)}
+
+.stat small{color:#718197;font-size:12.5px}
+.stat strong{display:block;font-size:30px;line-height:1.33;font-weight:700;color:#203147}
+.stat span{color:#39886A;font-size:11.5px}
+
+/* ---------- 8. 卡片 ---------- */
+.card{
+  background:#FFFFFF;
+  border:1px solid #E4EAF2;
+  border-radius:12px;
+  padding:20px;
+}
+.card h2{
+  font-size:16px;
+  font-weight:600;
+  margin:0 0 14px;
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+}
+.card h2 .muted{font-size:11px;letter-spacing:1.2px;color:#A8B3C2}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
+.grid>div{display:flex;flex-direction:column;gap:18px;min-width:0}
+
+/* ---------- 9. 列表行 ---------- */
+.row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 0;
+  border-bottom:1px solid #EDF1F6;
+}
+.row:last-child{border-bottom:0}
+.row>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.row strong{display:block;font-weight:500;font-size:13.5px;color:#203147}
+.row>span{flex:none}
+.row .muted{font-size:11.5px}
+
+/* ---------- 10. 状态徽标 ---------- */
+.badge{
+  display:inline-block;
+  font-size:11px;
+  font-weight:500;
+  padding:4px 9px;
+  background:#EDF2FF;
+  color:#4166C1;
+  border-radius:5px;
+  white-space:nowrap;
+  line-height:1.5;
+}
+.badge.done{background:#E6F6EE;color:#278160}
+.badge.warn{background:#FFF2E3;color:#B57524}
+
+/* ---------- 11. 工具栏与表单 ---------- */
+.toolbar{display:flex;gap:12px;margin-bottom:20px}
+.toolbar input{flex:1;min-width:0}
+
+input,select,textarea{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #DCE3ED;
+  border-radius:8px;
+  background:#FFFFFF;
+  color:#203147;
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+input::placeholder,textarea::placeholder{color:#9AA7B8}
+input:hover,select:hover,textarea:hover{border-color:#C6D2E2}
+input:focus,select:focus,textarea:focus{
+  outline:none;
+  border-color:#A9BFFF;
+  box-shadow:0 0 0 3px rgba(169,191,255,.22);
+}
+input[type=checkbox]{width:16px;height:16px;accent-color:#285EE8;cursor:pointer}
+
+label{
+  display:block;
+  margin:14px 0 5px;
+  font-size:13px;
+  font-weight:500;
+  color:#203147;
+}
+textarea{min-height:95px;resize:vertical;line-height:1.65}
+
+.form-error{
+  color:#A82929;
+  font-size:12.5px;
+  white-space:pre-wrap;
+  margin:8px 0 0;
+}
+.form-error:empty{display:none}
+
+/* ---------- 12. 表格 ---------- */
+table{width:100%;border-collapse:collapse;text-align:left}
+th{
+  background:#F7F9FC;
+  color:#77869B;
+  font-size:11.5px;
+  font-weight:500;
+  padding:12px 12px;
+  border-bottom:1px solid #EDF1F6;
+  white-space:nowrap;
+}
+th:first-child,.table-wrap>table th:first-child{padding-left:20px}
+td{
+  padding:13px 12px;
+  border-bottom:1px solid #EDF1F6;
+  font-size:12.5px;
+  color:#5A6B82;
+  vertical-align:middle;
+}
+td:first-child{color:#203147}
+td strong{font-weight:500;font-size:13px;color:#203147}
+td .muted{font-size:11.5px;line-height:1.6}
+
+.table-wrap{overflow-x:auto;padding:0}
+.table-wrap table{min-width:720px}
+
+.card.table-wrap{padding:0;overflow:hidden}
+.card.table-wrap table tr:last-child td{border-bottom:0}
+
+th,td{vertical-align:middle}
+
+/* ---------- 13. 进度条 ---------- */
+.progress{
+  height:7px;
+  background:#EEF2F7;
+  border-radius:4px;
+  margin:9px 0 16px;
+  overflow:hidden;
+}
+.progress i{display:block;height:100%;background:#4275ED;border-radius:4px}
+
+/* ---------- 14. 空状态 ---------- */
+.empty{
+  text-align:center;
+  padding:40px;
+  color:#8896A9;
+  font-size:13px;
+}
+
+/* ---------- 15. 弹窗 ---------- */
+dialog{
+  border:0;
+  border-radius:14px;
+  width:min(540px,94vw);
+  padding:28px;
+  color:#203147;
+  box-shadow:0 20px 80px rgba(19,36,60,.25);
+}
+dialog::backdrop{background:rgba(20,35,59,.55);backdrop-filter:blur(2px)}
+
+.dialog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.dialog-head h2{font-size:18px;font-weight:600;margin:0}
+.dialog-head button{
+  border:0;background:none;font-size:22px;line-height:1;
+  color:#8398B4;padding:0 4px;border-radius:4px;
+}
+.dialog-head button:hover{background:#EEF2F7;color:#203147}
+
+.form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}
+
+/* ---------- 16. Toast ---------- */
+#toast{
+  position:fixed;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#203147;
+  color:#fff;
+  padding:12px 22px;
+  border-radius:9px;
+  display:none;
+  z-index:100;
+  font-size:13px;
+  box-shadow:0 10px 30px rgba(19,36,60,.28);
+  max-width:min(520px,90vw);
+  text-align:center;
+}
+
+/* ---------- 17. 长文本 ---------- */
+.notice{white-space:pre-wrap;line-height:1.7}
+.report{white-space:pre-wrap;line-height:2}
+
+/* ---------- 18. 按钮组与任务操作 ---------- */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+
+.chips button{
+  font-size:12.5px;
+  padding:7px 15px;
+  border-radius:7px;
+  background:#FFFFFF;
+  color:#5A6B82;
+}
+.chips button[aria-pressed="true"]{
+  background:#EAF0FF;
+  border-color:#A9BFFF;
+  color:#2457CC;
+  font-weight:600;
+}
+
+.task-actions{display:flex;flex-wrap:wrap;gap:8px}
+.task-actions button{font-size:12px;padding:7px 13px;border-radius:7px}
+
+/* ---------- 19. 指派通知 ---------- */
+.assignment-alert{
+  margin-bottom:20px;
+  padding:14px 18px;
+  border:1px solid #9AB4FA;
+  border-radius:10px;
+  background:#E7EFFF;
+  color:#183985;
+}
+.assignment-alert strong{display:block;font-weight:500;margin-bottom:4px}
+.assignment-alert .row{padding:9px 0;border-color:#C9D8FB}
+.assignment-alert .row:last-child{padding-bottom:0}
+.assignment-alert button{white-space:nowrap;background:#fff}
+
+/* ---------- 20. 工时档案 ---------- */
+.archive-group{margin-top:20px}
+.archive-group:first-child{margin-top:0}
+.archive-group h2{font-size:15px;font-weight:600;margin:0 0 4px}
+.archive-group .row>span{flex:none;font-size:12.5px;color:#4166C1;font-weight:500}
+
+/* ---------- 21. 人员名单 ---------- */
+.roster-page{display:flex;flex-direction:column;gap:20px}
 .roster-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
 .roster-areas{margin-bottom:16px}
-.roster-areas button[aria-pressed="true"]{color:#2457cc;background:#eaf0ff;border-color:#a9bfff;font-weight:600}
 .roster-toolbar{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
-.roster-group-heading{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.roster-group-heading h2{margin:0}.roster-group td{font-variant-numeric:tabular-nums}
-@media(min-width:601px){aside nav{min-height:0;overflow-y:auto}aside footer{flex-shrink:0}}
-@media(max-width:600px){.roster-stats{gap:8px}.roster-stats .stat{padding:12px 10px}.roster-stats .stat span{display:none}.roster-toolbar{grid-template-columns:1fr}.roster-group{padding:12px}}
+.roster-group{padding:0;overflow:hidden;margin-bottom:18px}
+.roster-group-heading{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:16px 20px 12px;
+  margin:0;
+}
+.roster-group-heading h2{margin:0;font-size:16px;font-weight:600}
+.roster-group td{font-variant-numeric:tabular-nums}
+.roster-group .table-wrap{padding:0}
+.roster-group table{min-width:0}
 
-#presence-form button, #dispatch-form button { margin-top: 16px; }
-#available-only { width: auto; }
-#presence-results { margin-top: 12px; }
+/* ---------- 21b. 登录页辅助 ---------- */
+.assistant-entry{margin:16px 0;display:flex;align-items:center;gap:18px}
+.assistant-entry a{font-weight:500}
 
-@media(min-width:601px){aside{overflow-y:auto}aside h2{font-size:19px;letter-spacing:0}aside nav{margin-top:20px;gap:4px}aside nav button{padding-block:8px}}
-.task-actions { display: flex; flex-wrap: wrap; gap: 8px; }
-.assignment-alert { margin-bottom: 22px; padding: 14px 18px; border: 1px solid #9ab4fa; border-radius: 10px; background: #e7efff; color: #183985; }
-.assignment-alert .row { padding: 9px 0; border-color: #c9d8fb; }
-.assignment-alert .row:last-child { padding-bottom: 0; }
-.assignment-alert button { white-space: nowrap; }
-.archive-group { margin-top: 20px; }
-.archive-group h2 { margin-bottom: 4px; }
-.archive-group .row > span { flex-shrink: 0; }
+/* ---------- 22. 人员状态 ---------- */
+#presence-form button,#dispatch-form button{margin-top:16px}
+#available-only{width:auto}
+#presence-results{margin-top:12px}
+#presence-results .row{padding:12px 0}
+
+/* ---------- 23. 辅助类 ---------- */
+.mobile-brand{display:none}
+
+/* ---------- 24. 响应式 ---------- */
+@media(max-width:1200px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:minmax(0,1fr)}
+}
+
+@media(max-width:900px){
+  aside{width:196px;padding:22px 16px}
+  .workspace{margin-left:196px}
+  main{padding:22px}
+  header{padding:15px 22px}
+  .topline{align-items:flex-start}
+  header .muted{display:none}
+  aside h2{font-size:14px}
+}
+
+@media(max-width:600px){
+  aside{
+    position:static;
+    width:100%;
+    padding:16px;
+    flex-direction:column;
+  }
+  aside h2{font-size:14px}
+  aside small,aside footer{display:none}
+  nav{display:flex;overflow-x:auto;margin-top:12px;gap:4px;padding-bottom:4px}
+  nav button{white-space:nowrap;padding:8px 12px}
+  nav .nav-link{margin-top:0}
+  .workspace{margin:0}
+  header{padding:12px 16px;font-size:12px;flex-wrap:wrap}
+  header .actions{flex-wrap:wrap;justify-content:flex-end}
+  header button{padding:6px 10px;font-size:12px}
+  main{padding:20px 14px;gap:16px}
+  h1{font-size:22px}
+  .stat,.card{padding:16px}
+  .stats{gap:10px}
+  .stat strong{font-size:26px}
+  .topline{flex-wrap:wrap}
+  td,th{padding:12px 9px}
+  .toolbar{flex-wrap:wrap}
+  .toolbar input{flex-basis:100%}
+  .banner{font-size:12px}
+}
+
+/* ============================================================
+   25. 内联样式覆盖
+   app.js 中有 6 处 style="..." 内联属性，优先级高于本表，
+   此处用 !important 定向修正，使"仅替换 style.css"即可生效。
+   ============================================================ */
+
+/* 「本周工作闭环」卡片：原内联 background:#edf2ff → 提升为描边浅蓝卡 */
+.card[style*="edf2ff"]{
+  background:#EDF2FF !important;
+  border:1px solid #DCE5FA !important;
+  border-radius:12px !important;
+}
+
+/* 进度条填充：原内联 width:xx% 保留，内联优先级高于类，此处不改宽度，
+   仅确保颜色与圆角跟随新规范 */
+.progress i{
+  background:#4275ED !important;
+  border-radius:4px !important;
+}
+
+/* 登录页容器：原内联 max-width:470px;margin:8vh auto → 加宽为双栏卡片 */
+#app>main[style*="470px"]{
+  max-width:940px !important;
+  margin:6vh auto !important;
+  padding:0 24px !important;
+  display:block !important;
+}
+
+/* 登录表单内的按钮：原内联 width:100%;margin-top:24px → 保持通栏主按钮 */
+#login button[type="submit"]{
+  width:100% !important;
+  margin-top:22px !important;
+  background:#285EE8 !important;
+  border-color:#285EE8 !important;
+  color:#FFFFFF !important;
+  font-weight:500 !important;
+  height:46px !important;
+}
+
+/* 公告/任务详情里的内联 margin-top:12px / 16px 保持原值即可，
+   此处仅统一这几处的间距节奏 */
+[style*="margin-top:12px"]{margin-top:12px !important}
+[style*="margin-top:16px"]{margin-top:16px !important}
+
+/* ---------- 26. 侧栏图标（字符 → SVG 由 skin.js 负责；
+   此处为无 JS 时的降级：统一字形尺寸与颜色） ---------- */
+nav button>span:not(.nav-icon){
+  display:inline-block;
+  width:17px;
+  text-align:center;
+  font-size:15px;
+  line-height:1;
+  color:#93A9C7;
+  opacity:.9;
+}
+nav button.active>span:not(.nav-icon){color:#FFFFFF;opacity:1}
+nav button:hover>span:not(.nav-icon){color:#DCE6F5}
+nav .nav-link>span{color:#7BA4FF}
+
+/* SVG 图标容器（skin.js 注入） */
+nav button .nav-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:17px;
+  height:17px;
+  flex:none;
+  color:#93A9C7;
+}
+nav button.active .nav-icon{color:#FFFFFF}
+nav button:hover .nav-icon{color:#DCE6F5}
+nav .nav-link svg{color:#7BA4FF;flex:none}
+
+/* ---------- 27. 减少动效偏好 ---------- */
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+}
+
+.danger-outline { color: #a82119; border-color: #edb5b0; }
+.danger { color: #fff; background: #b42318; border-color: #b42318; }
+
+.card.table-wrap { overflow-x: auto; }
+@media(max-width:600px){input,select,textarea{font-size:16px}}
