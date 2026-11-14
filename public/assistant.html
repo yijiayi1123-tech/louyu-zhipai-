@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="no-referrer">
   <title>智能助手 · 校园楼宇运维助手</title>
-  <link rel="stylesheet" href="./style.css?v=20261114-task-delete-1">
-  <link rel="stylesheet" href="./assistant.css?v=20261114-task-delete-1">
+  <link rel="stylesheet" href="./style.css?v=20261114-ardot-1">
+  <link rel="stylesheet" href="./assistant.css?v=20261114-ardot-1">
   <script src="./config.js?v=20261030-gateway-1"></script>
   <script src="./assistant.js?v=20261114-workflow-1" type="module"></script>
 </head>
 <body class="assistant-page">
   <header class="assistant-header">
     <a class="assistant-brand" href="./index.html" aria-label="校园楼宇运维助手，返回工作台">
-      <span class="assistant-mark" aria-hidden="true">▦</span>
+      <span class="assistant-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13M9 21v-7h6v7"/></svg></span>
       <span>校园楼宇运维助手 <small>智能助手</small></span>
     </a>
     <nav class="assistant-actions" aria-label="智能助手操作">
@@ -22,6 +22,7 @@
     </nav>
   </header>
   <main class="assistant-main">
+    <div class="assistant-content"><div class="assistant-conversation">
     <section class="assistant-intro" aria-labelledby="assistant-title">
       <div class="eyebrow">AI ASSISTANT</div>
       <h1 id="assistant-title">AI 工作助手</h1>
@@ -44,6 +45,11 @@
       </div>
       <p id="agent-status" class="assistant-status" role="status" aria-live="polite">正在打开对话页面…</p>
     </section>
+    <section class="card assistant-tips">
+      <h2>提问前请准备好这些信息</h2>
+      <ul><li>故障或异常的准确位置</li><li>发生时间、影响范围和已完成的检查</li><li>设备型号与连接方式</li></ul>
+    </section>
+    </div>
     <div id="assistant-learning" class="assistant-learning" hidden>
       <section class="card" aria-labelledby="knowledge-title">
         <h2 id="knowledge-title">网络运维知识库</h2>
@@ -51,11 +57,11 @@
           <summary>无线网络连接</summary>
           <p>先核对网络名称与认证状态，并用另一台设备在同一区域复测。记录时间、楼宇、连接方式和错误现象。</p>
         </details>
-        <details>
+        <details open>
           <summary>测速与复核</summary>
           <p>在同一位置、同一设备和同一连接方式下复测，并记录下载、上传及延迟。</p>
         </details>
-        <details>
+        <details open>
           <summary>工单协同</summary>
           <p>提交工单时说明故障位置、发生时间、影响范围、复现步骤和已经做过的检查。</p>
         </details>
@@ -90,6 +96,7 @@
           </div>
         </form>
       </section>
+    </div>
     </div>
     <noscript><p>请启用 JavaScript 后使用智能助手。</p></noscript>
   </main>
